@@ -5,27 +5,66 @@
     <meta name="viewport" content="user-scalable=no, width=device-width" />
     <link rel="stylesheet" href="https://kabsyakskabeer.github.io/TheHare/index.css">
     <title>web app</title>
+    <style>
+      body {
+    background: black;
+}
+
+.clock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: #17D4FE;
+    font-size: 60px;
+    font-family: Orbitron;
+    letter-spacing: 7px;
+   
+
+
+}
+    </style>
   </head>
   <body>
-  <header>
-    <h1>JP</h1>
-    <h3>JiPharma Prices</h3>
-    <textarea name="search" id="search" cols="30" rows="1"></textarea>
-  </header>
-  <main>
-    <ol>
-      <li>
-        <div>Tab. Pacetamol 500mg</div>
-        <div>1000</div>
-        <div>Emzor</div>
-        <div>6000</div>
-      </li>
-    </ol>
-  </main>
+    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+
   <div id="results"></div>
   <div id="footer">
   <h5>Written by Kabiru Yakubu &copy Copyright December 2021</h5>
   </div>
-  <script src="https://kabsyakskabeer.github.io/TheHare/app.js"></script>
+  
+ <script>
+  function showTime(){
+    var date = new Date();
+    var h = date.getHours(); // 0 - 23
+    var m = date.getMinutes(); // 0 - 59
+    var s = date.getSeconds(); // 0 - 59
+    var session = "AM";
+    
+    if(h == 0){
+        h = 12;
+    }
+    
+    if(h > 12){
+        h = h - 12;
+        session = "PM";
+    }
+    
+    h = (h < 10) ? "0" + h : h;
+    m = (m < 10) ? "0" + m : m;
+    s = (s < 10) ? "0" + s : s;
+    
+    var time = h + ":" + m + ":" + s + " " + session;
+    document.getElementById("MyClockDisplay").innerText = time;
+    document.getElementById("MyClockDisplay").textContent = time;
+    
+    setTimeout(showTime, 1000);
+    
+}
+
+showTime();
+ </script>
+
   </body>
 </html>
+
